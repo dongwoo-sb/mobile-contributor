@@ -1,6 +1,4 @@
-import React, {Component} from 'react';
-import {StyleSheet, View, Alert, Text} from 'react-native';
-import {RNCamera} from 'react-native-camera';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
