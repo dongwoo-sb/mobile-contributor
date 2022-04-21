@@ -15,32 +15,30 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator options={{tabBarStyle: {backgroundColor: 'black'}}}>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarStyle: {backgroundColor: 'black'},
+          tabBarShowLabel: false,
+        }}>
         <Tab.Screen
           name="Home"
           component={HomeScreen}
           options={{
-            tabBarStyle: {backgroundColor: 'black'},
             tabBarIcon: () => <Home />,
-            tabBarShowLabel: false,
           }}
         />
         <Tab.Screen
           name="Camera"
           component={CameraScreen}
           options={{
-            tabBarStyle: {backgroundColor: 'black'},
             tabBarIcon: () => <Plus />,
-            tabBarShowLabel: false,
           }}
         />
         <Tab.Screen
           name="Profile"
           component={ProfileScreen}
           options={{
-            tabBarStyle: {backgroundColor: 'black'},
             tabBarIcon: () => <User />,
-            tabBarShowLabel: false,
           }}
         />
       </Tab.Navigator>
