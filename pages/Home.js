@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, View, TextInput, Image} from 'react-native';
 import Logo from '../assets/icons/Logo';
-import Button from '../components/Button';
 import Search from '../assets/icons/search.svg';
+import Button from '../components/Button';
+import ImageSelect from '../components/ImageSelect';
 import mockData from '../mockData/homeMock';
 
 export default function HomeScreen() {
@@ -46,7 +47,7 @@ export default function HomeScreen() {
                 color: 'white',
               }}
               placeholder="Search Content"
-              placeholderTextColor="white"
+              placeholderTextColor="#C6C6C6"
               onChangeText={setSearch}
               value={search}
             />
@@ -106,31 +107,7 @@ export default function HomeScreen() {
               return content.type === filter || filter === '';
             })
             .map(({title, image}) => {
-              if (!image) {
-                return (
-                  <View
-                    style={{
-                      width: 115,
-                      height: 115,
-                      marginRight: 5,
-                      marginBottom: 5,
-                      backgroundColor: 'blue',
-                    }}
-                  />
-                );
-              }
-              return (
-                <Image
-                  key={title}
-                  style={{
-                    width: 115,
-                    height: 115,
-                    marginRight: 5,
-                    marginBottom: 5,
-                  }}
-                  source={image}
-                />
-              );
+              return <ImageSelect title={title} image={image} />;
             })}
         </View>
       </ScrollView>
