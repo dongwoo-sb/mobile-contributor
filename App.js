@@ -1,17 +1,29 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from './pages/Home';
 import ProfileScreen from './pages/Profile';
 import CameraScreen from './pages/Camera';
+import EditPage from './pages/EditPage';
 
-import Home from './assets/icons/home.svg';
-import Plus from './assets/icons/plus.svg';
-import User from './assets/icons/user.svg';
+import Icon from 'react-native-vector-icons/Feather';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
+function HomeNav() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="EditPage" component={EditPage} />
+    </Stack.Navigator>
+  );
+}
 export default function App() {
   return (
     <NavigationContainer>
@@ -26,23 +38,23 @@ export default function App() {
         }}>
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={HomeNav}
           options={{
-            tabBarIcon: () => <Home />,
+            tabBarIcon: () => <Icon name="home" size={24} color="white" />,
           }}
         />
         <Tab.Screen
           name="Camera"
           component={CameraScreen}
           options={{
-            tabBarIcon: () => <Plus />,
+            tabBarIcon: () => <Icon name="plus" size={24} color="white" />,
           }}
         />
         <Tab.Screen
           name="Profile"
           component={ProfileScreen}
           options={{
-            tabBarIcon: () => <User />,
+            tabBarIcon: () => <Icon name="user" size={24} color="white" />,
           }}
         />
       </Tab.Navigator>

@@ -2,11 +2,28 @@ import React, {useReducer} from 'react';
 import {Image, View, TouchableOpacity} from 'react-native';
 import DottedEllipse from '../assets/icons/dotted-ellipse.svg';
 
-const ImageSelect = ({title, image}) => {
+const ImageSelect = ({
+  title,
+  image,
+  tags,
+  selected,
+  setSelected,
+  setLatestSelected,
+}) => {
   const [active, setActive] = useReducer((s, a) => !s, false);
 
   return (
-    <TouchableOpacity onPress={setActive}>
+    <TouchableOpacity
+      onPress={() => {
+        setActive();
+        if (active) {
+          setSelected(selected - 1);
+        } else {
+          setSelected(selected + 1);
+          setLatestSelected({title, image, tags});
+        }
+      }}
+      key={title}>
       {active && (
         <View
           style={{
@@ -48,7 +65,6 @@ const ImageSelect = ({title, image}) => {
         />
       ) : (
         <Image
-          key={title}
           style={{
             width: 115,
             height: 115,
