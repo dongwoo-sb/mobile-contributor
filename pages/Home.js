@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Logo from '../assets/icons/Logo';
-import Search from '../assets/icons/search.svg';
 import Button from '../components/Button';
 import ImageSelect from '../components/ImageSelect';
 import mockData from '../mockData/homeMock';
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function HomeScreen({navigation}) {
   let data = mockData;
@@ -44,7 +44,12 @@ export default function HomeScreen({navigation}) {
               alignItems: 'center',
               backgroundColor: '#1A1C1E',
             }}>
-            <Search style={{marginHorizontal: 10}} />
+            <Icon
+              name="search"
+              size={17}
+              style={{marginHorizontal: 10}}
+              color="#C6C6C6"
+            />
             <TextInput
               style={{
                 flex: 1,

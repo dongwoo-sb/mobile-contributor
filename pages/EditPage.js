@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -7,10 +7,11 @@ import {
   Text,
   TextInput,
 } from 'react-native';
-import Delete from '../assets/icons/delete.svg';
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function EditPage({route, navigation}) {
   const {title, image, tags} = route.params;
+  const [value, setValue] = useState(title);
 
   return (
     <SafeAreaView
@@ -24,6 +25,7 @@ export default function EditPage({route, navigation}) {
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
+          marginBottom: 20,
         }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={{color: 'white'}}>Cancel</Text>
@@ -48,6 +50,7 @@ export default function EditPage({route, navigation}) {
               width: '100%',
               height: '50%',
               backgroundColor: '#FFF6BF',
+              marginBottom: 20,
             }}
           />
         ) : (
@@ -56,28 +59,81 @@ export default function EditPage({route, navigation}) {
               width: '100%',
               height: '50%',
               resizeMode: 'contain',
+              marginBottom: 20,
             }}
             source={image}
           />
         )}
-        <Text style={{color: 'white'}}>Title</Text>
-        <TextInput
+        <View
           style={{
-            flex: 1,
-            paddingTop: 10,
-            paddingRight: 10,
-            paddingBottom: 10,
-            paddingLeft: 0,
-            backgroundColor: '#1A1C1E',
-            color: 'white',
-          }}
-          placeholder="Search Content"
-          placeholderTextColor="#C6C6C6"
-          //   onChangeText={setSearch}
-          //   value={search}
-        />
-        <Delete style={{height: 2}} />
-        <Text style={{color: 'white'}}>Tags</Text>
+            backgroundColor: 'black',
+            padding: 20,
+          }}>
+          <Text style={{color: '#626C78', marginBottom: 3}}>Title</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              backgroundColor: '#1A1C1E',
+              width: '100%',
+              marginBottom: 20,
+              padding: 10,
+            }}>
+            <TextInput
+              style={{
+                flex: 1,
+                backgroundColor: '#1A1C1E',
+                color: 'white',
+              }}
+              onChangeText={setValue}
+              value={value}
+            />
+            <TouchableOpacity onPress={() => setValue('')}>
+              <Icon name="x" size={17} color="white" />
+            </TouchableOpacity>
+          </View>
+          <Text style={{color: '#626C78', marginBottom: 3}}>Tags</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+            }}>
+            {tags.map(tag => (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  backgroundColor: '#1A1C1E',
+                  paddingVertical: 5,
+                  marginRight: 5,
+                  marginBottom: 5,
+                  alignItems: 'center',
+                  borderRadius: 17,
+                }}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 17,
+                    fontWeight: '300',
+                    paddingHorizontal: 10,
+                  }}>
+                  {tag}
+                </Text>
+                <TouchableOpacity style={{paddingRight: 10}}>
+                  <Icon name="x" size={17} color="white" />
+                </TouchableOpacity>
+              </View>
+            ))}
+
+            <TouchableOpacity
+              style={{
+                marginLeft: 10,
+                backgroundColor: '#FFE121',
+                padding: 10,
+                borderRadius: 100,
+              }}>
+              <Icon name="plus" size={17} color="black" />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   );

@@ -50,6 +50,6 @@ metaData = [
 
 export default metaData.map((x, i) => ({
   ...x,
-  tags: ['cool', 'pretty'],
+  tags: ['taco', 'pizza', 'burgers', 'fries', 'sushi'],
   //   image: IMAGES[i],
 }));
