@@ -6,9 +6,9 @@ import HomeScreen from './pages/Home';
 import ProfileScreen from './pages/Profile';
 import CameraScreen from './pages/Camera';
 
-import Home from './assets/home.svg';
-import Plus from './assets/plus.svg';
-import User from './assets/user.svg';
+import Home from './assets/icons/home.svg';
+import Plus from './assets/icons/plus.svg';
+import User from './assets/icons/user.svg';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +17,11 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
-          tabBarStyle: {backgroundColor: 'black'},
+          headerShown: false,
+          tabBarStyle: {
+            backgroundColor: '#1A1C1E',
+            borderTopWidth: 0,
+          },
           tabBarShowLabel: false,
         }}>
         <Tab.Screen
