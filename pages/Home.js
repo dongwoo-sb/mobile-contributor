@@ -1,15 +1,24 @@
 import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, View, TextInput, Image} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import Logo from '../assets/icons/Logo';
 import Search from '../assets/icons/search.svg';
 import Button from '../components/Button';
 import ImageSelect from '../components/ImageSelect';
 import mockData from '../mockData/homeMock';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   let data = mockData;
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
+  const [selected, setSelected] = useState(0);
+  const [latestSelected, setLatestSelected] = useState({});
 
   return (
     <SafeAreaView
@@ -106,11 +115,62 @@ export default function HomeScreen() {
             .filter(content => {
               return content.type === filter || filter === '';
             })
-            .map(({title, image}) => {
-              return <ImageSelect title={title} image={image} />;
+            .map(({title, image, tags}) => {
+              return (
+                <ImageSelect
+                  key={title}
+                  title={title}
+                  image={image}
+                  tags={tags}
+                  selected={selected}
+                  setSelected={setSelected}
+                  setLatestSelected={setLatestSelected}
+                />
+              );
             })}
         </View>
       </ScrollView>
+      {!!selected && (
+        <View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            bottom: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#FFE121',
+              paddingHorizontal: 20,
+              paddingVertical: 7,
+              width: 140,
+              alignItems: 'center',
+              borderRadius: 18,
+            }}
+            onPress={() => navigation.navigate('EditPage', latestSelected)}>
+            <Text style={{color: 'black', fontSize: 25, fontWeight: '300'}}>
+              Edit
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#1A1C1E',
+              paddingHorizontal: 20,
+              paddingVertical: 7,
+              width: 140,
+              alignItems: 'center',
+              borderRadius: 18,
+            }}>
+            <View>
+              <Text style={{color: 'white', fontSize: 25, fontWeight: '300'}}>
+                Delete
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )}
     </SafeAreaView>
   );
 }
