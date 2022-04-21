@@ -1,11 +1,14 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, View, Text, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {SafeAreaView, ScrollView, View, TextInput, Image} from 'react-native';
 import Logo from '../assets/icons/Logo';
 import Button from '../components/Button';
 import Search from '../assets/icons/search.svg';
+import mockData from '../mockData/homeMock';
 
 export default function HomeScreen() {
-  let data = Array.from(Array(100));
+  let data = mockData;
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('');
 
   return (
     <SafeAreaView
@@ -44,9 +47,8 @@ export default function HomeScreen() {
               }}
               placeholder="Search Content"
               placeholderTextColor="white"
-
-              // onChangeText={onChangeText}
-              // value={text}
+              onChangeText={setSearch}
+              value={search}
             />
           </View>
           <View
@@ -57,27 +59,79 @@ export default function HomeScreen() {
               borderColor: 'white',
               paddingVertical: 15,
             }}>
-            <Button title="Images" />
-            <Button title="Videos" />
-            <Button title="Audio" />
+            <Button
+              title="Images"
+              onPress={() => {
+                if (filter !== '') {
+                  setFilter('');
+                } else {
+                  setFilter('image');
+                }
+              }}
+            />
+            <Button
+              title="Videos"
+              onPress={() => {
+                if (filter !== '') {
+                  setFilter('');
+                } else {
+                  setFilter('video');
+                }
+              }}
+            />
+            <Button
+              title="Audio"
+              onPress={() => {
+                if (filter !== '') {
+                  setFilter('');
+                } else {
+                  setFilter('audio');
+                }
+              }}
+            />
           </View>
         </View>
         <View
           style={{
             flexDirection: 'row',
             flexWrap: 'wrap',
-            justifyContent: 'space-between',
           }}>
-          {data.map(content => (
-            <View
-              style={{
-                width: 115,
-                height: 115,
-                backgroundColor: 'blue',
-                marginBottom: 10,
-              }}
-            />
-          ))}
+          {data
+            .filter(content => {
+              let searchTerm = search.toUpperCase();
+              let upperTitle = content.title.toUpperCase();
+              return search === '' || upperTitle.includes(searchTerm);
+            })
+            .filter(content => {
+              return content.type === filter || filter === '';
+            })
+            .map(({title, image}) => {
+              if (!image) {
+                return (
+                  <View
+                    style={{
+                      width: 115,
+                      height: 115,
+                      marginRight: 5,
+                      marginBottom: 5,
+                      backgroundColor: 'blue',
+                    }}
+                  />
+                );
+              }
+              return (
+                <Image
+                  key={title}
+                  style={{
+                    width: 115,
+                    height: 115,
+                    marginRight: 5,
+                    marginBottom: 5,
+                  }}
+                  source={image}
+                />
+              );
+            })}
         </View>
       </ScrollView>
     </SafeAreaView>
