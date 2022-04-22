@@ -1,24 +1,24 @@
-const IMAGES = [
-  require('./mockImages/sky.jpg'),
-  require('./mockImages/bermuda.jpg'),
-  require('./mockImages/lake.jpg'),
-  require('./mockImages/mountain.jpg'),
-  require('./mockImages/wheat.jpg'),
-  require('./mockImages/alpine.jpg'),
-  require('./mockImages/coloseum.jpg'),
-  require('./mockImages/floor.jpg'),
-  require('./mockImages/gym.jpg'),
-  require('./mockImages/office.jpg'),
-  require('./mockImages/pyramid.jpg'),
-  require('./mockImages/santorini.jpg'),
-  require('./mockImages/view.jpg'),
-  require('./mockImages/confusedBeardedMan.jpg'),
-  require('./mockImages/happydanceGirl.jpg'),
-  require('./mockImages/girl.jpg'),
-  require('./mockImages/womanRunning.jpg'),
-  require('./mockImages/womanRunsTrack.jpg'),
-  require('./mockImages/worriedMan.jpg'),
-];
+// const IMAGES = [
+//   require('./mockImages/sky.jpg'),
+//   require('./mockImages/bermuda.jpg'),
+//   require('./mockImages/lake.jpg'),
+//   require('./mockImages/mountain.jpg'),
+//   require('./mockImages/wheat.jpg'),
+//   require('./mockImages/alpine.jpg'),
+//   require('./mockImages/coloseum.jpg'),
+//   require('./mockImages/floor.jpg'),
+//   require('./mockImages/gym.jpg'),
+//   require('./mockImages/office.jpg'),
+//   require('./mockImages/pyramid.jpg'),
+//   require('./mockImages/santorini.jpg'),
+//   require('./mockImages/view.jpg'),
+//   require('./mockImages/confusedBeardedMan.jpg'),
+//   require('./mockImages/happydanceGirl.jpg'),
+//   require('./mockImages/girl.jpg'),
+//   require('./mockImages/womanRunning.jpg'),
+//   require('./mockImages/womanRunsTrack.jpg'),
+//   require('./mockImages/worriedMan.jpg'),
+// ];
 
 metaData = [
   {title: 'sky texture', type: 'image'},
@@ -51,5 +51,5 @@ metaData = [
 export default metaData.map((x, i) => ({
   ...x,
   tags: ['taco', 'pizza', 'burgers', 'fries', 'sushi'],
-  image: IMAGES[i],
+  // image: IMAGES[i],
 }));
