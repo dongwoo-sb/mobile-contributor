@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  SafeAreaView,
   ScrollView,
   View,
   Text,
@@ -21,10 +20,11 @@ export default function HomeScreen({navigation}) {
   const [latestSelected, setLatestSelected] = useState({});
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: 'black',
+        paddingTop: 50,
       }}>
       <ScrollView
         stickyHeaderIndices={[1]}
@@ -140,7 +140,7 @@ export default function HomeScreen({navigation}) {
           style={{
             position: 'absolute',
             width: '100%',
-            bottom: 20,
+            bottom: 90,
             flexDirection: 'row',
             justifyContent: 'space-evenly',
             alignItems: 'center',
@@ -176,6 +176,6 @@ export default function HomeScreen({navigation}) {
           </TouchableOpacity>
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 }
